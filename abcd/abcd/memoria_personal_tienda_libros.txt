@@ -1,0 +1,104 @@
+MEMORIA PERSONAL – Proyecto Tienda de Libros
+
+1.  Estado actual del proyecto
+
+Arquitectura conseguida: - Interfaz: Python + curses - Sistema de
+archivos: Bash - Datos: JSON - Estructura persistente:
+/tiendas/tienda_libros
+
+Separación lograda: - Python: interacción y validación lógica básica. -
+Bash: creación y eliminación física de archivos y directorios. - JSON:
+almacenamiento estructurado de datos.
+
+El proyecto cumple la filosofía solicitada en clase.
+
+------------------------------------------------------------------------
+
+2.  Aspectos que ya entiendo y debo poder explicar
+
+Normalización de nombres: - Elimina espacios externos. - Convierte a
+minúsculas. - Quita acentos. - Sustituye espacios por guiones bajos. -
+Evita duplicados invisibles por mayúsculas o acentos.
+
+Generación de ISBN: - Uso de contador.txt. - Lectura → incremento →
+escritura. - Formato: 978000001.
+
+Comunicación Python ↔ Bash: - Uso de subprocess.run(). - Bash devuelve
+códigos de salida. - Python interpreta el returncode. - Bash imprime
+“CREADO|ruta”. - Python separa con split(“|”).
+
+------------------------------------------------------------------------
+
+3.  Aspectos que necesito indagar más
+
+Curses: - curses.LINES y curses.COLS. - Manejo de scroll manual
+(offset). - echo() vs noecho(). - Funcionamiento interno de cbreak().
+
+Códigos de retorno en Bash: - Diferencia entre exit 1 y exit 30. -
+Buenas prácticas al definir códigos personalizados. - Interpretación
+correcta de returncode en Python.
+
+Manejo seguro de JSON: - Qué ocurre si el JSON está corrupto. -
+Validación de estructura. - Añadir nuevos campos sin romper
+compatibilidad.
+
+Seguridad de rutas: - Qué es path traversal. - Uso correcto de
+relative_to(). - Limitación del explorador para evitar salir de la base.
+
+Permisos en Linux: - Diferencia entre 755 y 777. - Significado de rwx. -
+Qué es umask. - Buenas prácticas de permisos.
+
+------------------------------------------------------------------------
+
+4.  Posibles simplificaciones futuras
+
+-   Mover contador a /tiendas.
+-   Reducir lógica duplicada entre Python y Bash.
+-   Simplificar scroll del explorador si no es necesario.
+
+------------------------------------------------------------------------
+
+5.  Cosas que NO debo hacer
+
+-   Añadir funciones innecesarias.
+-   Duplicar lógica en Python y Bash.
+-   Reescribir todo sin necesidad.
+-   Complicar el proyecto más allá del enunciado.
+
+------------------------------------------------------------------------
+
+6.  Nivel real del proyecto
+
+No es avanzado ni innovador, pero es: - Correcto. - Funcional. -
+Coherente. - Alineado con el enunciado.
+
+------------------------------------------------------------------------
+
+7.  Preguntas que debo poder responder
+
+8.  ¿Por qué Bash crea carpetas y no Python?
+
+9.  ¿Qué ocurre si ejecuto el proyecto desde otro directorio?
+
+10. ¿Dónde está realmente la base de datos?
+
+11. ¿Cómo evitar duplicados sin usar JSON?
+
+12. ¿Qué pasa si dos usuarios ejecutan el programa a la vez?
+
+------------------------------------------------------------------------
+
+8.  Próximo paso sano
+
+-   Leer y entender cada línea del código.
+-   Simular errores (JSON corrupto, permisos incorrectos, rutas
+    inexistentes).
+-   Ver cómo responde el sistema.
+
+------------------------------------------------------------------------
+
+Reflexión personal
+
+He pasado de estar perdido a tener una aplicación funcional con
+interfaz, backend y persistencia. El progreso no es solo técnico,
+también mental.
