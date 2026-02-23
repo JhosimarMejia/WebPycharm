@@ -1,0 +1,122 @@
+GUÍA RÁPIDA (PASO A PASO) — SUBIR MI PROYECTO A MI GITHUB DESDE LINUX/WSL
+(para usar en otros ordenadores)
+
+0) IDEA GENERAL
+- El proyecto está en Linux (WSL): ~/tienda_libros
+- Git funciona SOLO dentro de la carpeta que contiene .git/
+- Subir a GitHub = git init + add + commit + conectar remote + push
+
+------------------------------------------------------------
+1) ENTRAR EN LA CARPETA DEL PROYECTO
+cd ~/tienda_libros
+
+Comprobar que estás en el sitio correcto:
+pwd
+ls -la
+
+Si ves una carpeta ".git", ya es un repositorio.
+Si NO existe ".git", tendrás que hacer git init.
+
+------------------------------------------------------------
+2) CREAR .gitignore (RECOMENDADO)
+nano .gitignore
+
+Ejemplo típico:
+.venv/
+__pycache__/
+.idea/
+contador.txt
+
+Guardar:
+Ctrl+O, Enter
+Salir:
+Ctrl+X
+
+------------------------------------------------------------
+3) CONFIGURAR IDENTIDAD DE GIT (UNA SOLA VEZ POR PC)
+git config --global user.name "Josue"
+git config --global user.email "TU_EMAIL_REAL@EJEMPLO.COM"
+
+Verificar:
+git config --global --list
+
+------------------------------------------------------------
+4) INICIALIZAR REPOSITORIO (SI NO EXISTE .git)
+git init
+
+Comprobar:
+git status
+
+------------------------------------------------------------
+5) AÑADIR ARCHIVOS Y HACER EL PRIMER COMMIT
+git add .
+git commit -m "Version inicial funcional - tienda_libros"
+
+Si da error de identidad, vuelve al paso 3.
+
+------------------------------------------------------------
+6) CREAR REPOSITORIO EN GITHUB
+- En GitHub: New repository
+- Nombre: tienda_libros
+- Si lo creas con README, habrá un commit remoto inicial.
+
+Copia la URL del repo, por ejemplo:
+https://github.com/Jouse0001/tienda_libros.git
+
+------------------------------------------------------------
+7) CONECTAR EL REPO LOCAL CON GITHUB (REMOTE)
+git remote add origin https://github.com/Jouse0001/tienda_libros.git
+
+Comprobar:
+git remote -v
+
+------------------------------------------------------------
+8) CAMBIAR A RAMA main (RECOMENDADO)
+git branch -M main
+
+------------------------------------------------------------
+9) SUBIR A GITHUB (PUSH)
+git push -u origin main
+
+Te pedirá:
+Username for 'https://github.com':
+  -> tu usuario de GitHub (ej: Jouse0001)
+
+Password:
+  -> NO es tu contraseña normal
+  -> es un TOKEN (Personal Access Token - PAT)
+
+------------------------------------------------------------
+10) SI GITHUB TIENE README Y TE SALE "fetch first"
+Esto pasa si el repositorio remoto NO está vacío (por ejemplo, README.md).
+
+Solución (merge sencillo):
+git config pull.rebase false
+git pull origin main --allow-unrelated-histories
+git push -u origin main
+
+(En algunos casos te abre el editor para el mensaje del merge: guardar y salir.)
+
+------------------------------------------------------------
+11) RUTINA NORMAL A PARTIR DE AHORA
+Cada vez que hagas cambios:
+
+git add .
+git commit -m "mensaje corto"
+git push
+
+Si antes alguien cambió el repo (o tú desde otro PC):
+git pull
+
+------------------------------------------------------------
+12) NOTAS IMPORTANTES
+- Si ves: "fatal: not a git repository", estás fuera del proyecto.
+  -> Solución: cd ~/tienda_libros
+
+- Si ves: "src refspec main does not match any"
+  -> No hay commits aún. Haz primero el commit (paso 5).
+
+- Si te cansa meter token siempre:
+  -> opción futura: configurar SSH (más cómodo).
+
+FIN.
